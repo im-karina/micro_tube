@@ -3,11 +3,13 @@
   <p>Find me in app/views/channel/new.html.erb</p>
   <%= form_with model: @channel do |form| %>
     <%= form.label :name do %>
-      <%= t('channels.new.name') %>: <%= form.text_field :name %>
+      <%= t('channels.new.name') %>
+      <%= form.text_field :name %>
     <% end %>
 
     <%= form.label :thumbnail_image do %>
-      <%= t('channels.new.thumbnail_image') %>: <%= form.file_field :thumbnail_image %>
+      <%= t('channels.new.thumbnail_image') %>
+      <%= form.file_field :thumbnail_image %>
     <% end %>
 
     <%= form.submit t('channels.new.submit') %>
