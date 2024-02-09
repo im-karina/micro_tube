@@ -26,7 +26,7 @@ group :test do
 end
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri windows ]
+  gem "pry-rails"
 end
 
 group :development do
