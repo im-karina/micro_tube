@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Channel < ApplicationRecord
-  has_one :thumbnail_image
+  has_one_attached :thumbnail_image
 end

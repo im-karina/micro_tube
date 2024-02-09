@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+  channels:
+    new:
+      link_to: 'Create Channel'
+      submit: 'Create Channel'
+

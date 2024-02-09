@@ -1,0 +1,16 @@
+<div>
+  <h1 class="font-bold text-4xl">Channel#index</h1>
+  <p>Find me in app/views/channel/index.html.erb</p>
+  <%= link_to t('channel.new.link_to'), new_channel_path %>
+
+  <div>
+    <% @channels.each do |ch| %>
+      <%= link_to ch do %>
+        <div>
+          <%= image_tag ch.thumbnail_image %>
+          <%= ch.name %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
