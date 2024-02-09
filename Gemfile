@@ -21,6 +21,10 @@ gem "redis", ">= 4.0.1"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
+group :test do
+  gem "rspec-rails"
+end
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
