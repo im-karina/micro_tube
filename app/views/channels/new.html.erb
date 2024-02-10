@@ -1,17 +1,19 @@
 <div>
-  <h1 class="font-bold text-4xl">Channel#new</h1>
-  <p>Find me in app/views/channel/new.html.erb</p>
+  <h1 class="font-bold text-4xl">New Channel</h1>
   <%= form_with model: @channel do |form| %>
+    <div class="grid grid-cols-[140px_auto] gap-8 my-8">
+
     <%= form.label :name do %>
       <%= t('channels.new.name') %>
-      <%= form.text_field :name %>
     <% end %>
+    <%= form.text_field :name %>
 
     <%= form.label :thumbnail_image do %>
       <%= t('channels.new.thumbnail_image') %>
-      <%= form.file_field :thumbnail_image %>
     <% end %>
+    <%= form.file_field :thumbnail_image %>
 
     <%= form.submit t('channels.new.submit') %>
+    </div>
   <% end %>
 </div>

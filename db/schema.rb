@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_09_171043) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_09_202003) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_171043) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "channel_owners", force: :cascade do |t|
+    t.integer "channel_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_channel_owners_on_channel_id"
+    t.index ["user_id"], name: "index_channel_owners_on_user_id"
   end
 
   create_table "channels", force: :cascade do |t|
@@ -76,6 +85,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_171043) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.boolean "is_admin", default: false
+    t.boolean "is_trusted", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -88,6 +99,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_171043) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "channel_id"
+    t.index ["channel_id"], name: "index_videos_on_channel_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

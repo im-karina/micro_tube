@@ -11,22 +11,29 @@
     </div>
   <% end %>
 
-  <%= form.label :name do %>
-    <%= t('video.form.name') %>
-    <%= form.text_field :name %>
-  <% end %>
+  <div class="grid grid-cols-[140px_auto] gap-8 my-8">
+    <%= form.label :channel do %>
+      <%= t('video.form.channel') %>
+    <% end %>
+    <%= form.select :channel_id, @channels.collect { [_1.name, _1.id] }, {}, { class: 'text-neutral-950' } %>
 
-  <%= form.label :description do %>
-    <%= t('video.form.description') %>
-    <%= form.text_area :description %>
-  <% end %>
+    <%= form.label :name do %>
+      <%= t('video.form.name') %>
+    <% end %>
+    <%= form.text_field :name, class: 'text-neutral-950' %>
 
-  <%= form.label :source_video do %>
-    <%= t('video.form.source_video') %>
+    <%= form.label :description do %>
+      <%= t('video.form.description') %>
+    <% end %>
+    <%= form.text_area :description, class: 'text-neutral-950' %>
+
+    <%= form.label :source_video do %>
+      <%= t('video.form.source_video') %>
+    <% end %>
     <%= form.file_field :source_video %>
-  <% end %>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <div class="inline">
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
   </div>
 <% end %>

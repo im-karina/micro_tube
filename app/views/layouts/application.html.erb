@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MicroTube</title>
+    <title>µtube</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,10 +11,21 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-zinc-900 text-slate-50">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <header class="w-full text-center text-xl py-2">
+      µtube
+    </header>
+    <ul class="flex justify-center gap-2">
+      <li>
+        <%= link_to t('nav.videos'), videos_path %>
+      </li>
+      <li>
+        <%= link_to t('nav.channels'), channels_path %>
+      </li>
+    </ul>
+    <main class="container mx-auto my-12 px-5 flex">
       <%= yield %>
     </main>
   </body>

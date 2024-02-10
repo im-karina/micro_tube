@@ -28,7 +28,9 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  nav:
+    videos: 'Videos'
+    channels: 'Channels'
   channels:
     new:
       link_to: 'Create Channel'

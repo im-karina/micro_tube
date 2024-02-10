@@ -9,4 +9,5 @@
 #
 class Channel < ApplicationRecord
   has_one_attached :thumbnail_image
+  has_many :channel_owners
 end

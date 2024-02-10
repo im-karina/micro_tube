@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: %i[ show edit update destroy ]
+  before_action :set_channels, only: %i[ new show edit update ]
 
   # GET /videos or /videos.json
   def index
@@ -21,7 +22,10 @@ class VideosController < ApplicationController
 
   # POST /videos or /videos.json
   def create
+    set_channels
     @video = Video.new(video_params)
+    channel_id = params.require(:video).require(:channel_id)
+    @video.channel = @channels.find { _1.id = channel_id }
 
     respond_to do |format|
       if @video.save
@@ -60,7 +64,11 @@ class VideosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
-      @video = Video.find(params[:id])
+      @video = Video.find_by!(slug: params.require(:id))
+    end
+
+    def set_channels
+      @channels = current_user.channel_owners.includes(:channel).map(&:channel).uniq
     end
 
     # Only allow a list of trusted parameters through.

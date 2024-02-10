@@ -11,6 +11,8 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  failed_attempts        :integer          default(0), not null
+#  is_admin               :boolean          default(FALSE)
+#  is_trusted             :boolean          default(FALSE)
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  locked_at              :datetime
@@ -35,4 +37,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :channel_owners
+
+  include ActionAuthorizable
+
+  def owns_channel?(channel)
+    channel_owners.any? { _1.channel_id == channel.id }
+  end
 end

@@ -6,6 +6,7 @@ class ChannelsController < ApplicationController
   def create
     @channel = Channel.new(params.require(:channel).permit(:name, :thumbnail_image))
     if @channel.save
+      @channel.channel_owners.create!(user: current_user)
       redirect_to @channel
     else
       flash[:errors] = @channel.errors.full_messages

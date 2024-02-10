@@ -1,10 +1,6 @@
-<div id="<%= dom_id video %>">
-  <h1><%= video.name %></h1>
-  <p><%= video.description %></p>
+<div id="<%= dom_id video %>" class="flex flex-col gap-4">
+  <h1 class="text-xl"><%= video.name %></h1>
   <%= video_tag(video.source_video, controls: true) %>
-  <% if action_name != "show" %>
-    <%= link_to "Show this video", video, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this video", edit_video_path(video), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <span class="text-base"><%= video.channel.name %></span>
+  <p class="text-sm"><%= video.description %></p>
 </div>
