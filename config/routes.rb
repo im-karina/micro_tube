@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :channels
+  resources :streams
+  resources :stream_slices, only: :show
 
   # Defines the root path route ("/")
   # root "posts#index"

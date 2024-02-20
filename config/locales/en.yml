@@ -31,6 +31,8 @@ en:
   nav:
     videos: 'Videos'
     channels: 'Channels'
+    streams: 'Streams'
+    new_stream: 'New Stream'
   channels:
     new:
       link_to: 'Create Channel'

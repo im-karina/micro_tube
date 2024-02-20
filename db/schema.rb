@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_09_202003) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_20_004953) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -65,6 +65,44 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_202003) do
     t.index ["key_hash"], name: "index_solid_cache_entries_on_key_hash", unique: true
   end
 
+  create_table "stream_segments", force: :cascade do |t|
+    t.integer "stream_id"
+    t.decimal "relative_timestamp"
+    t.decimal "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stream_id"], name: "index_stream_segments_on_stream_id"
+  end
+
+  create_table "stream_slices", force: :cascade do |t|
+    t.integer "stream_id"
+    t.decimal "start_time"
+    t.decimal "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_stream_slices_on_slug", unique: true
+    t.index ["stream_id"], name: "index_stream_slices_on_stream_id"
+  end
+
+  create_table "stream_tokens", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "token"
+    t.datetime "revoked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stream_tokens_on_user_id"
+  end
+
+  create_table "streams", force: :cascade do |t|
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "live_stream_slice_id"
+    t.index ["live_stream_slice_id"], name: "index_streams_on_live_stream_slice_id"
+    t.index ["slug"], name: "index_streams_on_slug", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -105,4 +143,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_202003) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "streams", "stream_slices", column: "live_stream_slice_id"
 end

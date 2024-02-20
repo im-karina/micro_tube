@@ -1,0 +1,6 @@
+<div id="<%= dom_id stream %>" class="flex flex-col gap-4">
+  <h1 class="text-xl"><%= stream.slug %></h1>
+  <%= video_tag(stream.live_stream_slice, controls: true) %>
+  <span class="text-base"><%= stream.live_stream_slice.slug %></span>
+  <p class="text-sm">My cool stream description goes here</p>
+</div>

@@ -1,0 +1,16 @@
+<div class="flex flex-col gap-4">
+  <h1 class="font-bold text-4xl">Channels</h1>
+  <%= link_to t('nav.new_stream'), new_stream_path %>
+
+  <div>
+    <% @streams.each do |stream| %>
+      <%= link_to stream do %>
+        <div class="flex gap-2">
+          <span class="text-lg">
+            <pre><%= stream.slug %></pre>
+          </span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
