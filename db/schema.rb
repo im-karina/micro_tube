@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_20_004953) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_23_183801) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,10 +67,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_20_004953) do
 
   create_table "stream_segments", force: :cascade do |t|
     t.integer "stream_id"
-    t.decimal "relative_timestamp"
+    t.decimal "offset"
     t.decimal "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_stream_segments_on_slug", unique: true
     t.index ["stream_id"], name: "index_stream_segments_on_stream_id"
   end
 

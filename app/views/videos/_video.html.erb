@@ -1,6 +1,8 @@
 <div id="<%= dom_id video %>" class="flex flex-col gap-4">
   <h1 class="text-xl"><%= video.name %></h1>
-  <%= video_tag(video.source_video, controls: true) %>
+  <video-js controls>
+    <source src="<%= video.source_video %>" type="application/x-mpegURL">
+  </video-js>
   <span class="text-base"><%= video.channel.name %></span>
   <p class="text-sm"><%= video.description %></p>
 </div>

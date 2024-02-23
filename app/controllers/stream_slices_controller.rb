@@ -1,4 +1,6 @@
 class StreamSlicesController < ApplicationController
+  include ActiveStorage::SetCurrent
+
   def show
     @stream_slice = StreamSlice.find_by!(slug: params.require(:id))
 

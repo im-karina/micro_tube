@@ -2,8 +2,8 @@
 #EXT-X-VERSION:3
 #EXT-X-TARGETDURATION:4
 #EXT-X-MEDIA-SEQUENCE:0
-<% @stream_slice.segments.each do |segment| %>
-#EXTINF:<%= segment.duration %>,
-<%= segment.source_video_path %>
+<% @stream_slice.segments.filter { _1.source_video.attached? }.each do |segment| %>
+#EXTINF: <%= segment.duration %>,
+<%= stream_segment_path(segment, format: :ts) %>
 <% end %>
 #EXT-X-ENDLIST
