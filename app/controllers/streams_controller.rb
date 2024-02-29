@@ -16,7 +16,15 @@ class StreamsController < ApplicationController
 
   def create
     @stream = Stream.create!
-    redirect_to @stream
+    respond_to do |fmt|
+      fmt.html do 
+        redirect_to @stream
+      end
+      fmt.json do
+        segments = @stream.stream_segments
+        render json: { stream: { id: @stream.slug, segments: } }
+      end
+    end
   end
 
   def update
@@ -24,7 +32,6 @@ class StreamsController < ApplicationController
     segments = params.require(:stream).fetch(:stream_segments)
 
     segments = segments.map do |segment_params|
-      binding.pry
       offset = segment_params.require(:offset)
       duration = segment_params.require(:duration)
       source_video = segment_params.require(:source_video)
