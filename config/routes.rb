@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :channels
   resources :streams
   resources :stream_segments, only: [:show]
-  resources :stream_slices, only: :show
+  resources :stream_slices, only: [:create, :show]
 
   # Defines the root path route ("/")
   # root "posts#index"

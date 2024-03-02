@@ -1,0 +1,14 @@
+<div id="<%= dom_id stream_slice %>" class="flex flex-col gap-4">
+  <h1 class="text-xl"><%= stream_slice.slug %></h1>
+  <video-js controls class="vjs-default-skin" id="stream" width=1280 height=720 preload="none">
+    <source src="<%=stream_slice_path(stream_slice, format: 'm3u8')%>" type="application/x-mpegURL">
+  </video-js>
+  <script src="https://unpkg.com/@videojs/http-streaming@3.10.0/dist/videojs-http-streaming.min.js"></script>
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <script>
+    var player = videojs('stream', {liveui: true});
+  </script>
+
+  <span class="text-base"><%= stream_slice.slug %></span>
+  <p class="text-sm">My cool stream description goes here</p>
+</div>

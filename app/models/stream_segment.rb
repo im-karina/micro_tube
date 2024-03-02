@@ -2,13 +2,14 @@
 #
 # Table name: stream_segments
 #
-#  id         :integer          not null, primary key
-#  duration   :decimal(, )
-#  offset     :decimal(, )
-#  slug       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  stream_id  :integer
+#  id               :integer          not null, primary key
+#  end_local_usec   :bigint
+#  sequence         :integer
+#  slug             :string
+#  start_local_usec :bigint
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  stream_id        :integer
 #
 # Indexes
 #
@@ -19,4 +20,6 @@ class StreamSegment < ApplicationRecord
   include Sluggable
 
   has_one_attached :source_video
+
+  def duration = (start_local_usec - end_local_usec).to_f / 1_000_000
 end

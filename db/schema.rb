@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_23_183801) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_01_180132) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,22 +67,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_183801) do
 
   create_table "stream_segments", force: :cascade do |t|
     t.integer "stream_id"
-    t.decimal "offset"
-    t.decimal "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "sequence"
+    t.bigint "start_local_usec"
+    t.bigint "end_local_usec"
     t.index ["slug"], name: "index_stream_segments_on_slug", unique: true
     t.index ["stream_id"], name: "index_stream_segments_on_stream_id"
   end
 
   create_table "stream_slices", force: :cascade do |t|
     t.integer "stream_id"
-    t.decimal "start_time"
-    t.decimal "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.datetime "finalized_at"
+    t.bigint "start_local_usec"
+    t.bigint "end_local_usec"
     t.index ["slug"], name: "index_stream_slices_on_slug", unique: true
     t.index ["stream_id"], name: "index_stream_slices_on_stream_id"
   end
@@ -101,6 +103,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_183801) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "live_stream_slice_id"
+    t.bigint "start_unix_usec"
     t.index ["live_stream_slice_id"], name: "index_streams_on_live_stream_slice_id"
     t.index ["slug"], name: "index_streams_on_slug", unique: true
   end

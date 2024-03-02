@@ -4,6 +4,7 @@
 #
 #  id                   :integer          not null, primary key
 #  slug                 :string           not null
+#  start_unix_usec      :bigint
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  live_stream_slice_id :integer
@@ -25,4 +26,6 @@ class Stream < ApplicationRecord
   has_many :stream_segments
 
   belongs_to :live_stream_slice, class_name: 'StreamSlice'
+
+  validates :start_unix_usec, presence: true
 end
