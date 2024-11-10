@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is intended for personal use only. Security and safety are both an afterthought. It should not be used for any commercial or public use, ever. If you aren't me, you probably shouldn't touch this code. Even I probably shouldn't touch it.
